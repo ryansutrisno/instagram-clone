@@ -5,22 +5,16 @@ const User = mongoose.model("User")
 const bcrypt = require('bcryptjs')
 const jwt = require('jsonwebtoken')
 const {JWTSECRET} = require('../keys')
-const { json } = require('express')
-const requiredLogin = require('../middleware/requireLogin')
-
-router.get('/protected', requiredLogin, (req, res) => {
-    res.send('hello user')
-})
 
 router.post('/signup', (req, res) => {
     const {name, email, password} = req.body
     if (!name || !email || !password) {
-        return res.status(422).json({error: "please add all the fields"})
+        return res.status(422).json({error: "Please add all the fields"})
     }
     User.findOne({email: email})
         .then((savedUser) => {
             if(savedUser) {
-                return res.status(422).json({error: "user already exist with that email"})
+                return res.status(422).json({error: "User already exist with that email"})
             }
             bcrypt.hash(password, 12)
                 .then(hashedPassword => {
@@ -31,7 +25,7 @@ router.post('/signup', (req, res) => {
                     })
                     user.save()
                         .then(user => {
-                            res.json({message: "saved succesfully"})
+                            res.json({message: "Saved succesfully"})
                         })
                         .catch(err => {
                             console.log(err)
@@ -46,7 +40,7 @@ router.post('/signup', (req, res) => {
 router.post('/signin', (req, res) => {
     const {email, password} = req.body
     if(!email || !password) {
-        return res.status(422).json({error: "please add email or password"})
+        return res.status(422).json({error: "Please add email or password"})
     }
     User.findOne({email: email})
     .then(savedUser => {
@@ -56,9 +50,9 @@ router.post('/signin', (req, res) => {
         bcrypt.compare(password, savedUser.password)
         .then(doMatch => {
             if(doMatch) {
-            //   return res.json({message: "Successfully signed in"})
             const token = jwt.sign({_id: savedUser._id}, JWTSECRET)
-            res.json({token})
+            const {_id, name, email} = savedUser
+            res.json({token, user: {_id, name, email}})
             }
             else {
                 return res.status(422).json({error: "Invalid email or password"})

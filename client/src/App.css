@@ -26,3 +26,29 @@ a {
   border-bottom: 1px solid rgb(85, 154, 245) !important;
   box-shadow: 0 1px 0 0 rgb(85, 154, 245) !important;
 }
+
+.gallery {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-around;
+}
+
+.item {
+  width: 30%;
+}
+
+/* .home {
+  
+} */
+
+.home-card {
+  max-width: 500px;
+  height: max-content;
+  margin: 26px auto;
+}
+
+#toast-container {
+  top:30px !important;
+  right: 20px !important;
+  left: auto !important;
+}
