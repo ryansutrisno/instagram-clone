@@ -25,7 +25,7 @@ const Navbar = () => {
               localStorage.clear()
               dispatch({type: "CLEAR"})
               history.push('/login')
-            }}><span class="material-icons">
+            }}><span className="material-icons">
             logout
             </span></a>
       </li>

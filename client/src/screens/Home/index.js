@@ -1,5 +1,6 @@
 // eslint-disable-next-line
 import {useState, useEffect, useContext} from 'react'
+import {Link} from 'react-router-dom'
 import {UserContext} from '../../App'
 
 const Home = () => {
@@ -113,7 +114,8 @@ const Home = () => {
                 data.map(item => {
                     return (
                     <div className="card home-card" key={item._id}>
-                        <h5 style={{padding: "10px"}}>{item.postedBy.name} 
+                        <h5 style={{padding: "10px"}}>
+                            <Link to={item.postedBy._id !== state._id ? "/profile/"+item.postedBy._id : "/profile"}>{item.postedBy.name}</Link>
                             {item.postedBy._id === state._id && <i className="material-icons" style={{float: 'right', cursor: 'pointer'}} onClick={() => deletePost(item._id)}>delete</i>}
                         </h5>
                             <div className="card-image">
