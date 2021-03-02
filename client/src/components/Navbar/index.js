@@ -19,6 +19,11 @@ const Navbar = () => {
           </Link>
         </li>,
         <li>
+          <Link to="/followingpost">
+          <i className="material-icons">apps</i>
+          </Link>
+        </li>,
+        <li>
           <a
             style={{marginTop: 8}}
             onClick={() => {
