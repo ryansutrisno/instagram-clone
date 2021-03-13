@@ -7,11 +7,10 @@ import Profile from './screens/Profile'
 import Register from './screens/Register'
 import CreatePost from './screens/CreatePost'
 import UserProfile from './screens/UserProfile'
-import MyFollowerPost from './screens/SubscribesUserPost'
+import SubscribesUserPost from './screens/SubscribesUserPost'
 import {reducer, initialState} from './reducers/userReducer'
 
 import './App.css';
-import SubscribesUserPost from './screens/SubscribesUserPost'
 
 export const UserContext = createContext()
 

@@ -67,17 +67,19 @@ const CreatePost = () => {
       >
         <input 
           type="text" 
-          placeholder="title"
+          placeholder="Title post"
           value={title}
           onChange={(e)=> setTitle(e.target.value)} />
         <input 
           type="text" 
-          placeholder="caption"
+          placeholder="Caption post"
           value={caption}
           onChange={(e)=> setCaption(e.target.value)} />
         <div className="file-field input-field">
-          <div className="btn waves-effect waves-light blue darken-2">
-            <span>Upload Image</span>
+          <div className="btn waves-effect waves-light blue-grey darken-4">
+            <span class="material-icons" style={{padding: '5px', marginTop: '5px'}}>
+              drive_folder_upload
+            </span>
             <input type="file" onChange={(e)=> setImage(e.target.files[0])} />
           </div>
           <div className="file-path-wrapper">

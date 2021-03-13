@@ -8,22 +8,22 @@ const Navbar = () => {
   const renderNav = () => {
     if(state) {
       return [
-        <li>
+        <li key="1">
           <Link to="/create">
             <i className="material-icons">create</i>
           </Link>
         </li>,
-        <li>
+        <li key="2">
           <Link to="/profile">
           <i className="material-icons">person</i>
           </Link>
         </li>,
-        <li>
+        <li key="3">
           <Link to="/followingpost">
           <i className="material-icons">apps</i>
           </Link>
         </li>,
-        <li>
+        <li key="4">
           <a
             style={{marginTop: 8}}
             onClick={() => {
@@ -37,12 +37,12 @@ const Navbar = () => {
       ];
     } else {
       return [
-        <li>
+        <li key="5">
           <Link to="/register">
             <span>Register</span>
           </Link>
         </li>,
-        <li>
+        <li key="6">
           <Link to="/login">
             <span>Login</span>
           </Link>
