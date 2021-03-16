@@ -5,6 +5,7 @@ a {
 
 .brand-logo, h2 {
   font-family: 'Grand Hotel', cursive;
+  margin-left: 5px;
 }
 
 .mycard {
