@@ -8,7 +8,7 @@ const jwt = require('jsonwebtoken')
 const {JWTSECRET} = require('../config/keys')
 const nodemailer = require('nodemailer')
 const mg = require('nodemailer-mailgun-transport')
-const {MAILGUN_API, MAILGUN_DOMAIN} = require('../config/keys')
+const {MAILGUN_API, MAILGUN_DOMAIN, DOMAIN} = require('../config/keys')
 
 const auth = {
     auth: {
@@ -99,9 +99,10 @@ router.post('/reset-password', (req, res) => {
                     to: user.email,
                     subject: "Reset password",
                     text: "Your requested for reset password",
-                    html: `
-                    <p>Your requested for reset password</p>
-                    <h5>Click in this <a href="http://localhost:3000/reset-password/${token}">link</a> to reset password</h5>`
+                    html: `<div style="display: flex;justify-content: center;align-items: center;height: 200px;">
+                            <h3>Your requested for reset password</h3>
+                            <h5>Click in this <a href="${DOMAIN}/reset-password/${token}">link</a> to reset password</h5>
+                            </div>`
                 })
                 res.json({message: "Cek your email"})
             })
