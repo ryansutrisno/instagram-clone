@@ -5,10 +5,9 @@ const User = mongoose.model("User")
 const bcrypt = require('bcryptjs')
 const crypto = require('crypto')
 const jwt = require('jsonwebtoken')
-const {JWTSECRET} = require('../config/keys')
 const nodemailer = require('nodemailer')
 const mg = require('nodemailer-mailgun-transport')
-const {MAILGUN_API, MAILGUN_DOMAIN, DOMAIN} = require('../config/keys')
+const {MAILGUN_API, MAILGUN_DOMAIN, DOMAIN, JWT_SECRET } = require('../config/keys')
 
 const auth = {
     auth: {
@@ -65,7 +64,7 @@ router.post('/signin', (req, res) => {
         bcrypt.compare(password, savedUser.password)
         .then(doMatch => {
             if(doMatch) {
-            const token = jwt.sign({_id: savedUser._id}, JWTSECRET)
+            const token = jwt.sign({_id: savedUser._id}, JWT_SECRET)
             const {_id, name, email, followers, following, picture} = savedUser
             res.json({token, user: {_id, name, email, followers, following, picture}})
             }
