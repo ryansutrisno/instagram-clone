@@ -1,4 +1,3 @@
-// eslint-disable-next-line
 import {useState, useEffect, useContext} from 'react'
 import {Link} from 'react-router-dom'
 import {UserContext} from '../../App'
@@ -117,7 +116,7 @@ const Home = () => {
                         <div style={{padding: "10px", display: 'flex'}}>
                             <img 
                                 style={{width: "30px", height: "30px", borderRadius: "15px"}}
-                                src={state ? state.picture : "loading"} alt={state ? state.name : ""}
+                                src={item.postedBy.picture !== state._id && item.postedBy.picture} alt={item.postedBy.name}
                                 />
                                 <div>
                                     <Link style={{padding: '10px', fontWeight: 'bold'}} to={item.postedBy._id !== state._id ? "/profile/"+item.postedBy._id : "/profile"}>{item.postedBy.name}</Link>

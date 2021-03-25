@@ -6,7 +6,7 @@ const requiredLogin = require('../middleware/requireLogin')
 
 router.get('/allpost', requiredLogin, (req, res) => {
     Post.find()
-    .populate("postedBy", "_id name")
+    .populate("postedBy", "_id name picture")
     .populate("comments.postedBy", "_id name")
     .sort('-createdAt')
     .then(posts => {
@@ -69,7 +69,7 @@ router.put('/like', requiredLogin, (req, res) => {
         new: true
     })
     .populate("comments.postedBy", "_id name")
-    .populate("postedBy", "_id name")
+    .populate("postedBy", "_id name picture")
     .exec((err, result) => {
         if(err) {
             return res.status(422).json({error: err})
@@ -86,7 +86,7 @@ router.put('/unlike', requiredLogin, (req, res) => {
         new: true
     })
     .populate("comments.postedBy", "_id name")
-    .populate("postedBy", "_id name")
+    .populate("postedBy", "_id name picture")
     .exec((err, result) => {
         if(err) {
             return res.status(422).json({error: err})
@@ -107,7 +107,7 @@ router.put('/comment', requiredLogin, (req, res) => {
         new: true
     })
     .populate("comments.postedBy", "_id name")
-    .populate("postedBy", "_id name")
+    .populate("postedBy", "_id name picture")
     .exec((err, result) => {
         if(err) {
             return res.status(422).json({error: err})
